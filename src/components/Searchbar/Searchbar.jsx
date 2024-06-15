@@ -18,7 +18,7 @@ function Searchbar({ onSearch }) {
     <form className="searchbar input-group" onSubmit={handleSearch}>
       <span className="input-group-text"><i className="fa-solid fa-magnifying-glass"></i></span>
       <input
-        placeholder="Starbucks"
+        placeholder="Search here"
         type="text"
         className="form-control"
         value={query}

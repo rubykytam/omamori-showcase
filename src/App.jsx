@@ -24,7 +24,7 @@ function App() {
       {<Navbar setKeyword={setKeyword}/>}
       <div className="app-body">
         {/* <Sidebar setCafes={setCafes} /> */}
-        <p>私の御守り</p>
+
         <OmamoriList omamoris={omamoris}/>
       </div>
     </div>
