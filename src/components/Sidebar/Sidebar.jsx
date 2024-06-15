@@ -1,18 +1,22 @@
 
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import "./Sidebar.css";
 
 function Sidebar() {
   // TODO: build the addCafe feature
-  const [jinja, setJinja] = useState('');
+  const jinjaRef = useRef(null);
 
-  const criteria = ["縁結び", "金運"];
+  const criteria = ["縁結び", "金運","IT"];
+  const criteriaRefs = useRef(criteria.map(() => React.createRef()));
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const jinja = jinjaRef.current.value;
+    const selectedCriteria = criteria.filter((_, index) => criteriaRefs.current[index].current.checked);
+
     const formData = new FormData();
     formData.append('omamori[jinja]', jinja);
-
+    selectedCriteria.forEach(tag => formData.append('omamori[tags][]', tag));
     fetch('https://omamori-api-4689048697bb.herokuapp.com/api/v1/omamoris', {
       method: 'POST',
       body: formData,
@@ -31,14 +35,14 @@ function Sidebar() {
           </div>
           <div className="input-group mb-3">
             <span className="input-group-text" id="omamori-jinja"><i className="fa-solid fa-mug-saucer form-icons"></i></span>
-            <input name="omamori[jinja]" placeholder="Jinja Name" type="text" className="form-control" aria-describedby="omamori-jinja" />
+            <input name="omamori[jinja]" placeholder="Jinja Name" type="text" ref={jinjaRef} className="form-control" aria-describedby="omamori-jinja" />
             </div>
 
           <div className="mb-3">
             { criteria.map((criterion) => {
               return (
                 <React.Fragment key={criterion}>
-                  <input name="cafe[criteria][]" type="checkbox" className="btn-check" id={criterion} autoComplete="off" value={criterion}/>
+                  <input name="omamori[tags][]" type="checkbox" className="btn-check" id={criterion} autoComplete="off" value={criterion}/>
                   <label className="btn btn-outline-success btn-sm mx-1 mb-1" htmlFor={criterion}>{criterion}</label>
                 </React.Fragment>
               );
