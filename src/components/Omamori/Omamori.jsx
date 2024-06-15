@@ -8,10 +8,10 @@ function Omamori({omamori}) {
       <img src={omamori.photo_urls} alt={omamori.name} />
       <div>
         <div>
-          <h5>{omamori.name}</h5>
-          {/* <p>
-            { cafe.criteria .map( crit => <span key={crit}>{crit}</span>)}
-          </p> */}
+          <h5>{omamori.jinja}</h5>
+          <p>
+            { omamori.tags .map( crit => <span key={crit}>{crit}</span>)}
+          </p>
         </div>
         {/* <a target="_blank" href={gmapsUrl}>Show the map 📍</a> */}
       </div>

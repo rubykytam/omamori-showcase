@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import OmamoriList from './components/OmamoriList/OmamoriList';
 import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar/Sidebar';
 
 function App() {
   const [omamoris, setOmamoris] = React.useState([]);
@@ -21,11 +22,12 @@ function App() {
 
   return (
     <div className='app-frame'>
-      {<Navbar setKeyword={setKeyword}/>}
+      {<Navbar setKeyword={setKeyword} omamoris={omamoris}/>}
       <div className="app-body">
-        {/* <Sidebar setCafes={setCafes} /> */}
+
 
         <OmamoriList omamoris={omamoris}/>
+        {<Sidebar setOmamoris={setOmamoris} />}
       </div>
     </div>
   );

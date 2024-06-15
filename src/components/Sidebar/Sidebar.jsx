@@ -1,28 +1,42 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import "./Sidebar.css";
-import logo from '../../assets/logo_w_context2.png';
 
 function Sidebar() {
   // TODO: build the addCafe feature
+  const [jinja, setJinja] = useState('');
 
-  const criteria = ["Stable Wi-Fi", "Power sockets", "Quiet", "Coffee", "Food"];
+  const criteria = ["縁結び", "金運"];
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('omamori[jinja]', jinja);
+
+    fetch('https://omamori-api-4689048697bb.herokuapp.com/api/v1/omamoris', {
+      method: 'POST',
+      body: formData,
+    })
+  };
 
   return (
     <div className="sidebar">
       <div>
-        <h3>Share your work spot</h3>
-        <form>
-          <div className="input-group mb-3">
-            <span className="input-group-text" id="cafe-title"><i className="fa-solid fa-mug-saucer form-icons"></i></span>
-            <input name="cafe[title]" placeholder="FabCafe Shibuya" type="text" className="form-control" aria-describedby="cafe-title" />
-            </div>
-          <div className="input-group mb-3">
-            <span className="input-group-text" id="cafe-address"><i className="fa-solid fa-location-dot form-icons"></i></span>
-            <input name="cafe[address]" placeholder="1-chome-11-1 Shibuya, Shibuya City, 150-0002, Tokyo, 150-0002, Tokyo" aria-describedby="cafe-address" type="address" className="form-control" />
+        <h3>Add</h3>
+        <form onSubmit={handleSubmit}>
+
+        <div className="input-group mb-3">
+            <span className="input-group-text" id="cafe-picture"><i className="fa-solid fa-camera-retro form-icons"></i></span>
+            <input name="cafe[picture]" type="file" className="form-control" aria-describedby="cafe-picture" placeholder='http://example.com/image.jpg'/>
           </div>
-          <div className="mb-3"> 
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="omamori-jinja"><i className="fa-solid fa-mug-saucer form-icons"></i></span>
+            <input name="omamori[jinja]" placeholder="Jinja Name" type="text" className="form-control" aria-describedby="omamori-jinja" />
+            </div>
+
+          <div className="mb-3">
             { criteria.map((criterion) => {
-              return ( 
+              return (
                 <React.Fragment key={criterion}>
                   <input name="cafe[criteria][]" type="checkbox" className="btn-check" id={criterion} autoComplete="off" value={criterion}/>
                   <label className="btn btn-outline-success btn-sm mx-1 mb-1" htmlFor={criterion}>{criterion}</label>
@@ -30,16 +44,12 @@ function Sidebar() {
               );
             }) }
           </div>
-          <div className="input-group mb-3">
-            <span className="input-group-text" id="cafe-picture"><i className="fa-solid fa-camera-retro form-icons"></i></span>
-            <input name="cafe[picture]" type="text" className="form-control" aria-describedby="cafe-picture" placeholder='http://example.com/image.jpg'/>
-          </div>
+
           <div className="d-grid">
-            <button type="submit" className="btn btn-success">Ready to brew</button>
+            <button type="submit" className="btn btn-success">Add Data to API</button>
           </div>
         </form>
       </div>
-      <img src={logo} alt="keyboard and matcha logo" />
     </div>
   );
 }
