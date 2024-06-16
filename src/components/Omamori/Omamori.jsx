@@ -5,7 +5,7 @@ function Omamori({omamori}) {
   // const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${cafe.title} ${cafe.address}`;
   return (
     <div className="omamori-card">
-      <img src={omamori.photo_urls} alt={omamori.name} />
+      <img src={omamori.photo_url} alt={omamori.name} />
       <div>
         <div>
           <h5>{omamori.jinja}</h5>
