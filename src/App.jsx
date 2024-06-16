@@ -20,14 +20,16 @@ function App() {
       .catch(error => console.error('Error fetching data:', error)); // Log any errors
   }, [keyword]);
 
+
+
   return (
     <div className='app-frame'>
       {<Navbar setKeyword={setKeyword} omamoris={omamoris}/>}
       <div className="app-body">
 
-
+      {<Sidebar setOmamoris={setOmamoris} />}
         <OmamoriList omamoris={omamoris}/>
-        {<Sidebar setOmamoris={setOmamoris} />}
+
       </div>
     </div>
   );

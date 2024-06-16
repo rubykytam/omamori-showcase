@@ -41,6 +41,10 @@ function Sidebar() {
       method: 'POST',
       body: formData,
     })
+    .then(data => {
+      console.log('Omamori created:', data);
+      window.location.reload();
+    })
   };
 
   return (
