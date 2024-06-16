@@ -10,7 +10,7 @@ function Omamori({omamori}) {
         <div>
           <h5>{omamori.jinja}</h5>
           <p>
-            {/* { omamori.tags .map( crit => <span key={crit}>{crit}</span>)} */}
+          { omamori.tags?.map(crit => <span key={crit}>{crit}</span>)}
           </p>
         </div>
         {/* <a target="_blank" href={gmapsUrl}>Show the map 📍</a> */}
