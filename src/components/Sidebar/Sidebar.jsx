@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 // import { DirectUpload } from '@rails/activestorage';
 import "./Sidebar.css";
 
-function Sidebar() {
+function Sidebar({fetchOmamoris}) {
   // TODO: build the addCafe feature
   const jinjaRef = useRef(null);
   const criteriaRefs = useRef([]);
@@ -43,8 +43,12 @@ function Sidebar() {
     })
     .then(data => {
       console.log('Omamori created:', data);
-      window.location.reload();
-    })
+      fetchOmamoris();
+    });
+    jinjaRef.current.value = '';
+    criteriaRefs.current.forEach(ref => {
+      if (ref) ref.checked = false;
+    });
   };
 
   return (

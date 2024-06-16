@@ -8,26 +8,30 @@ function App() {
   const [omamoris, setOmamoris] = React.useState([]);
   const [keyword, setKeyword] = React.useState("");
 
-  React.useEffect(() => {
+  const fetchOmamoris = () => {
     const url = `https://omamori-api-4689048697bb.herokuapp.com/api/v1/omamoris${keyword !== "" ? `?search=${keyword}` : ""}`;
     console.log(`Fetching data from: ${url}`); // Log URL for debugging
     fetch(url)
       .then(response => response.json())
       .then((data) => {
         console.log('Fetched data:', data); // Log fetched data for debugging
-        setOmamoris(data);
+        setOmamoris(data); // Update the omamoris state with the fetched data
       })
       .catch(error => console.error('Error fetching data:', error)); // Log any errors
+  };
+
+  React.useEffect(() => {
+    fetchOmamoris();
   }, [keyword]);
 
 
 
   return (
     <div className='app-frame'>
-      {<Navbar setKeyword={setKeyword} omamoris={omamoris}/>}
+      <Navbar setKeyword={setKeyword} omamoris={omamoris}/>
       <div className="app-body">
 
-      {<Sidebar setOmamoris={setOmamoris} />}
+      <Sidebar fetchOmamoris={fetchOmamoris} />
         <OmamoriList omamoris={omamoris}/>
 
       </div>
