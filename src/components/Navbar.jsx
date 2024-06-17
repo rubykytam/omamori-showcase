@@ -2,10 +2,8 @@ import React from 'react';
 import Searchbar from './Searchbar/Searchbar';
 
 function Navbar({ setKeyword, allTags }) {
-
   const handleTagClick = (tag) => {
     setKeyword(tag); // Set the keyword when a tag is clicked
-    console.log(tag);
   };
 
   return (
@@ -20,14 +18,14 @@ function Navbar({ setKeyword, allTags }) {
             Tags
           </button>
           <ul className="dropdown-menu">
-            {allTags.map((tag, index) => (
+            {Object.keys(allTags).map((tag, index) => (
               <li key={index}>
                 <a
                   href="#"
                   className="dropdown-item"
                   onClick={() => handleTagClick(tag)}
                 >
-                  {tag}
+                  {tag} ({allTags[tag]})
                 </a>
               </li>
             ))}

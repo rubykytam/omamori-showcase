@@ -23,19 +23,22 @@ function App() {
   }, [keyword]);
 
   // Function to fetch all tags once when component mounts
-  const fetchAllTags = useCallback(() => {
-    const url = `https://omamori-api-4689048697bb.herokuapp.com/api/v1/omamoris`;
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        const allTagsSet = new Set();
-        data.forEach(omamori => {
-          allTagsSet.add(omamori.name);
-        });
-        setAllTags([...allTagsSet]);
-      })
-      .catch(error => console.error('Error fetching all tags:', error));
-  }, []);
+// Function to fetch all tags once when component mounts
+const fetchAllTags = useCallback(() => {
+  const url = `https://omamori-api-4689048697bb.herokuapp.com/api/v1/omamoris`;
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      const tagCounts = {};
+      data.forEach(omamori => {
+        const name = omamori.name;
+        tagCounts[name] = tagCounts[name] ? tagCounts[name] + 1 : 1;
+      });
+      setAllTags(tagCounts);
+    })
+    .catch(error => console.error('Error fetching all tags:', error));
+}, []);
+
 
   // useEffect to fetch omamoris based on keyword
   useEffect(() => {
