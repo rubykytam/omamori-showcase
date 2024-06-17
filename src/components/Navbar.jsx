@@ -5,6 +5,9 @@ import Searchbar from './Searchbar/Searchbar';
 function Navbar({ setKeyword , omamoris}) {
 
   const uniqueTags = [...new Set(omamoris.flatMap(omamori => omamori.tags))];
+  const handleTagClick = (tag) => {
+    setKeyword(tag); // Set the keyword when a tag is clicked
+  };
 
   return (
     <div className="d-flex justify-content-between align-items-center w-100 py-2 px-4 bg-success-subtle">
@@ -20,7 +23,14 @@ function Navbar({ setKeyword , omamoris}) {
           </button>
           <ul className="dropdown-menu">
           {uniqueTags.map((tag, index) => (
-          <li key={index}><a className="dropdown-item" href="#">{tag}</a></li>
+          <li key={index}>
+           <a
+          href="#"
+          className="dropdown-item"
+          onClick={() => handleTagClick(tag)}
+        >
+          {tag}
+        </a></li>
         ))}
           </ul>
         </div>

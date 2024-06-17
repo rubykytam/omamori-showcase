@@ -5,7 +5,7 @@ function Sidebar({ fetchOmamoris }) {
   const jinjaRef = useRef(null);
   const criteriaRefs = useRef([]);
   const photoRef = useRef(null);
-  const criteria = ["縁結び", "金運", "IT"];
+  const criteria = ["縁結び", "金運","仕事","除厄","IT","その他"];
 
   const uploadFileToCloudinary = (file) => {
     const url = `https://api.cloudinary.com/v1_1/dtpr5icvx/image/upload`;
@@ -87,15 +87,13 @@ function Sidebar({ fetchOmamoris }) {
   return (
     <div className="sidebar">
       <div>
-        <h3>Add</h3>
+        <h3>追加</h3>
         <form onSubmit={handleSubmit}>
           <div className="input-group mb-3">
-            <span className="input-group-text" id="omamori-photo"><i className="fa-solid fa-camera-retro form-icons"></i></span>
-            <input ref={photoRef} name="omamori[photo_url]" type="file" className="form-control" aria-describedby="omamori-photo" placeholder='Upload photo'/>
+            <input ref={photoRef} name="omamori[photo_url]" type="file" className="form-control" aria-describedby="omamori-photo" placeholder='写真'/>
           </div>
           <div className="input-group mb-3">
-            <span className="input-group-text" id="omamori-jinja"><i className="fa-solid fa-mug-saucer form-icons"></i></span>
-            <input name="omamori[jinja]" placeholder="Jinja Name" type="text" ref={jinjaRef} className="form-control" aria-describedby="omamori-jinja" />
+            <input name="omamori[jinja]" placeholder="神社の名前" type="text" ref={jinjaRef} className="form-control" aria-describedby="omamori-jinja" />
           </div>
           <div className="mb-3">
             {criteria.map((criterion, index) => (
@@ -114,7 +112,7 @@ function Sidebar({ fetchOmamoris }) {
             ))}
           </div>
           <div className="d-grid">
-            <button type="submit" className="btn btn-success">Add Data to API</button>
+            <button type="submit" className="btn btn-success">登録します</button>
           </div>
         </form>
       </div>

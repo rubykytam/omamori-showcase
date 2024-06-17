@@ -6,7 +6,7 @@
 }
 
 .omamori-card > img {
-  height: 260px;
+  height: 200px;
   width: 100%;
   object-fit: cover;
   border-radius: 4px 4px 0 0;
@@ -18,12 +18,11 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 16px;
-  min-height: 160px;
 }
 
-.omamori-card > div > div {
-  min-height: 120px;
-}
+/* .omamori-card > div > div {
+  /* min-height: 120px; */
+/* } */ */
 
 .omamori-card p {
   display: flex;

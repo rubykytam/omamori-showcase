@@ -8,6 +8,7 @@ function App() {
   const [omamoris, setOmamoris] = React.useState([]);
   const [keyword, setKeyword] = React.useState("");
 
+
   const fetchOmamoris = () => {
     const url = `https://omamori-api-4689048697bb.herokuapp.com/api/v1/omamoris${keyword !== "" ? `?search=${keyword}` : ""}`;
     console.log(`Fetching data from: ${url}`); // Log URL for debugging
