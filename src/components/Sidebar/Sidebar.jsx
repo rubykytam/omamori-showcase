@@ -3,9 +3,10 @@ import "./Sidebar.css";
 
 function Sidebar({ fetchOmamoris }) {
   const jinjaRef = useRef(null);
-  const criteriaRefs = useRef([]);
+  const nameRef = useRef(null);
   const photoRef = useRef(null);
-  const criteria = ["縁結び", "金運","仕事","除厄","IT","その他"];
+  const criteriaRefs = useRef([]);
+  const criteria = ["縁結び", "金運", "仕事", "除厄", "IT", "その他","test"];
 
   const uploadFileToCloudinary = (file) => {
     const url = `https://api.cloudinary.com/v1_1/dtpr5icvx/image/upload`;
@@ -27,25 +28,28 @@ function Sidebar({ fetchOmamoris }) {
     });
   };
 
+  const handleCheckboxChange = (index) => {
+    criteriaRefs.current.forEach((ref, i) => {
+      if (ref && i !== index) {
+        ref.checked = false;
+      }
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const jinja = jinjaRef.current.value;
     const photo = photoRef.current.files[0];
-    const selectedCriteria = criteriaRefs.current
-      .filter(ref => ref && ref.checked)
-      .map(ref => ref.value);
+    const selectedName = criteriaRefs.current.find(ref => ref && ref.checked).value;
 
-    // Create formData and append jinja and tags
+    // Create formData and append jinja and name
     const formData = new FormData();
     formData.append('omamori[jinja]', jinja);
-    selectedCriteria.forEach(tag => {
-      formData.append('omamori[tags][]', tag);
-    });
+    formData.append('omamori[name]', selectedName);
 
     const submitForm = (cloudinaryResponse) => {
       if (cloudinaryResponse) {
         formData.append('omamori[photo_url]', cloudinaryResponse.secure_url);
-
       }
       formData.forEach((value, key) => {
         console.log(`${key}: ${value}`);
@@ -95,17 +99,18 @@ function Sidebar({ fetchOmamoris }) {
           <div className="input-group mb-3">
             <input name="omamori[jinja]" placeholder="神社の名前" type="text" ref={jinjaRef} className="form-control" aria-describedby="omamori-jinja" />
           </div>
-          <div className="mb-3">
+          <div className="mb-3" ref={nameRef}>
             {criteria.map((criterion, index) => (
               <React.Fragment key={criterion}>
                 <input
-                  name="omamori[tags][]"
+                  name="omamori[name]"
                   type="checkbox"
                   className="btn-check"
                   id={criterion}
                   autoComplete="off"
                   value={criterion}
                   ref={el => criteriaRefs.current[index] = el}
+                  onChange={() => handleCheckboxChange(index)}
                 />
                 <label className="btn btn-outline-success btn-sm mx-1 mb-1" htmlFor={criterion}>{criterion}</label>
               </React.Fragment>
