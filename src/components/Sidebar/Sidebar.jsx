@@ -6,7 +6,7 @@ function Sidebar({ fetchOmamoris }) {
   const nameRef = useRef(null);
   const photoRef = useRef(null);
   const criteriaRefs = useRef([]);
-  const criteria = ["縁結び", "金運", "仕事", "健康", "安全", "厄除開運","心願成就","その他"];
+  const criteria = ["縁結び", "金運", "仕事", "健康", "安全", "厄除開運","心願成就","IT","その他"];
 
   const uploadFileToCloudinary = (file) => {
     const url = `https://api.cloudinary.com/v1_1/dtpr5icvx/image/upload`;
