@@ -1,12 +1,13 @@
 .sidebar {
-  width: 420px;
-  height: 100vh;
   background-color: #E2EAED;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: sticky;
   top: 0;
+  height: 100vh;
+  width: 30%;
+  flex: 0 0 30%;
 }
 .sidebar > div {
   padding: 0 24px;
@@ -19,6 +20,7 @@
 
 @media (max-width: 500px) {
   .sidebar {
-    display: none;
+    display: 100%;
+    position: sticky;
   }
 }

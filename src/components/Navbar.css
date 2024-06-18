@@ -1,0 +1,14 @@
+.Navbar {
+  background-image: url('../assets/bg2.JPG');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba(255, 255, 255, 0.1);
+  height: 200px;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 10px;
+}
+.Navbar h2 {
+  color: rgb(255, 255, 255);
+}

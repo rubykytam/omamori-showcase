@@ -6,7 +6,7 @@ function Sidebar({ fetchOmamoris }) {
   const nameRef = useRef(null);
   const photoRef = useRef(null);
   const criteriaRefs = useRef([]);
-  const criteria = ["縁結び", "金運", "仕事", "除厄", "IT", "その他","test"];
+  const criteria = ["縁結び", "金運", "仕事", "健康", "安全", "厄除開運","心願成就","その他"];
 
   const uploadFileToCloudinary = (file) => {
     const url = `https://api.cloudinary.com/v1_1/dtpr5icvx/image/upload`;
@@ -91,7 +91,7 @@ function Sidebar({ fetchOmamoris }) {
   return (
     <div className="sidebar">
       <div>
-        <h3>追加</h3>
+        <h3>お守りの追加</h3>
         <form onSubmit={handleSubmit}>
           <div className="input-group mb-3">
             <input ref={photoRef} name="omamori[photo_url]" type="file" className="form-control" aria-describedby="omamori-photo" placeholder='写真'/>

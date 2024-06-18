@@ -1,5 +1,6 @@
 import React from 'react';
 import Searchbar from './Searchbar/Searchbar';
+import "./Navbar.css";
 
 function Navbar({ setKeyword, allTags }) {
   const handleTagClick = (tag) => {
@@ -7,7 +8,7 @@ function Navbar({ setKeyword, allTags }) {
   };
 
   return (
-    <div className="d-flex justify-content-between align-items-center w-100 py-2 px-4 bg-success-subtle">
+    <div className="Navbar d-flex justify-content-between align-items-bottom w-100 py-2 px-4">
       <div className="d-flex align-items-center">
         <h2>私のお守り</h2>
       </div>
@@ -15,7 +16,7 @@ function Navbar({ setKeyword, allTags }) {
         <Searchbar onSearch={setKeyword} />
         <div className="dropdown">
           <button type="button" className="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Tags
+            ご利益
           </button>
           <ul className="dropdown-menu">
             {Object.keys(allTags).map((tag, index) => (
@@ -28,7 +29,17 @@ function Navbar({ setKeyword, allTags }) {
                   {tag} ({allTags[tag]})
                 </a>
               </li>
+
             ))}
+                <li>
+      <a
+        href="#"
+        className="dropdown-item"
+        onClick={() => handleTagClick('')}
+      >
+        一覧
+      </a>
+    </li>
           </ul>
         </div>
       </div>
