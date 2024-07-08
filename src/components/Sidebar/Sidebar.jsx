@@ -50,7 +50,13 @@ function Sidebar({ fetchOmamoris }) {
     const submitForm = (cloudinaryResponse) => {
       if (cloudinaryResponse) {
         formData.append('omamori[photo_url]', cloudinaryResponse.secure_url);
+      }else {
+        // Assign a default photo URL if the user didn't upload a photo
+        const defaultPhotoUrl = 'https://res.cloudinary.com/dtpr5icvx/image/upload/v1720429840/omamori_ushlaq.png';
+        formData.append('omamori[photo_url]', defaultPhotoUrl);
       }
+
+
       formData.forEach((value, key) => {
         console.log(`${key}: ${value}`);
       });
